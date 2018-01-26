@@ -6,7 +6,7 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import model.Lautstaerke;
+import model.LautstaerkeLesen;
 
 public class LautstaerkeFenster extends JFrame implements Observer {
 
@@ -40,7 +40,10 @@ public class LautstaerkeFenster extends JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        int lautstaerke = ((Lautstaerke)o).getLautstaerke();
+        // View holt sich Daten vom Model
+        int lautstaerke = ((LautstaerkeLesen)o).getLautstaerke();
+        
+        // Daten anzeigen
         String lautstaerkeText = String.valueOf(lautstaerke);
         labelLautstaerke.setText(lautstaerkeText);
     }
