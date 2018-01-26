@@ -2,7 +2,8 @@ package model;
 
 import java.util.Observable;
 
-public class Lautstaerke extends Observable implements LautstaerkeLesen{
+public class Lautstaerke extends Observable
+        implements LautstaerkeLesen, LautstaerkeSchreiben {
 
     private int lautstaerke;
 
@@ -15,6 +16,7 @@ public class Lautstaerke extends Observable implements LautstaerkeLesen{
         return lautstaerke;
     }
 
+    @Override
     public void setLautstaerke(int lautstaerke) {
         if (lautstaerke >= 0 && lautstaerke <= 10) {
             this.lautstaerke = lautstaerke;
