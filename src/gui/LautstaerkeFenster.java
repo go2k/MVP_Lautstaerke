@@ -77,4 +77,20 @@ public class LautstaerkeFenster extends JFrame implements Observer {
             }
         });
     }
+    
+    public void deaktiviereMinus(){
+        buttonLeiser.setEnabled(false);
+    }
+    
+    public void aktiviereMinus(){
+        buttonLeiser.setEnabled(true);
+    }
+    
+    public void deaktivierePlus(){
+        buttonLauter.setEnabled(false);
+    }
+    
+    public void aktivierePlus(){
+        buttonLauter.setEnabled(true);
+    }
 }
