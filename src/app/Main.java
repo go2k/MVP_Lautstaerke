@@ -1,6 +1,6 @@
 package app;
 
-import gui.Controller;
+import gui.Presenter;
 import gui.LautstaerkeFenster;
 import model.Lautstaerke;
 
@@ -9,20 +9,11 @@ public class Main {
         Lautstaerke model = new Lautstaerke();
         
         LautstaerkeFenster view = new LautstaerkeFenster();
-        Controller controller = new Controller(model);        
-        view.setController(controller);
-        controller.setView(view);
-        
-        model.addObserver(view);
-        model.addObserver(controller);
+        Presenter presenter = new Presenter(model);
+        view.setPresenter(presenter);
+        presenter.setView(view);
 
-        LautstaerkeFenster view2 = new LautstaerkeFenster();
-        Controller controller2 = new Controller(model);        
-        view2.setController(controller2);
-        controller2.setView(view2);
-        
-        model.addObserver(view2);
-        model.addObserver(controller2);
+        model.addObserver(presenter);
 
         
         model.setLautstaerke(7);

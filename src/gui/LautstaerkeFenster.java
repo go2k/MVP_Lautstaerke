@@ -1,17 +1,16 @@
 package gui;
 
+
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import model.LautstaerkeLesen;
 
-public class LautstaerkeFenster extends JFrame implements Observer {
-    private EventController controller;
+public class LautstaerkeFenster extends JFrame {
+    private EventPresenter presenter;
     
     private JButton buttonLauter;
     private JButton buttonLeiser;
@@ -24,8 +23,8 @@ public class LautstaerkeFenster extends JFrame implements Observer {
         initEvents();
     }
 
-    public void setController(EventController controller) {
-        this.controller = controller;
+    public void setPresenter(EventPresenter presenter) {
+        this.presenter = presenter;
     }
 
     private void initComponents() {
@@ -46,36 +45,29 @@ public class LautstaerkeFenster extends JFrame implements Observer {
         this.setVisible(true);
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        // View holt sich Daten vom Model
-        LautstaerkeLesen model = (LautstaerkeLesen) o;
-        int lautstaerke = model.getLautstaerke();
-
-        // Daten anzeigen
-        String lautstaerkeText = String.valueOf(lautstaerke);
-        labelLautstaerke.setText(lautstaerkeText);
-    }
-
     private void initEvents() {
         buttonLauter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.lauter();
+                presenter.lauter();
             }
         });
         buttonLeiser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.leiser();
+                presenter.leiser();
             }
         });
         buttonMute.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.mute();
+                presenter.mute();
             }
         });
+    }
+
+    public void setLautstaerke(String lautstaerke ) {
+        this.labelLautstaerke.setText(lautstaerke);
     }
     
     public void deaktiviereMinus(){
